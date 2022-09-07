@@ -7,13 +7,44 @@
 
 import SwiftUI
 
-class contentViewViewModel {
+class ContentViewViewModel: ObservableObject {
+    @ObservedObject var weatherManager = WeatherManager()
     
+    
+   
 }
 
 struct ContentView: View {
+    @StateObject private var contentViewViewModel = ContentViewViewModel()
+    
     var body: some View {
         ScrollView {
+            
+            Button {
+                Task{
+                    await contentViewViewModel.weatherManager.requestWeather()
+                    print(contentViewViewModel.weatherManager.weather?.currentWeather.temperature as Any)
+                }
+            } label: {
+                Text("Request Weather")
+                    .padding()
+                    .foregroundColor(.white)
+                    .frame(width: 200, height: 50)
+                    .background(Color.blue)
+                    .cornerRadius(30)
+            }
+            
+            Button {
+                print(contentViewViewModel.weatherManager.locationManager.userLocation as Any)
+            } label: {
+                Text("Print Location")
+                    .padding()
+                    .foregroundColor(.white)
+                    .frame(width: 200, height: 50)
+                    .background(Color.blue)
+                    .cornerRadius(30)
+            }
+
             VStack {
                 Spacer(minLength: 50)
                 VStack{

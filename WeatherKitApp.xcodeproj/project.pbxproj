@@ -11,6 +11,8 @@
 		F9F1BC1F28C66E7800E246F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC1E28C66E7800E246F1 /* ContentView.swift */; };
 		F9F1BC2128C66E7900E246F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9F1BC2028C66E7900E246F1 /* Assets.xcassets */; };
 		F9F1BC2528C66E7900E246F1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9F1BC2428C66E7900E246F1 /* Preview Assets.xcassets */; };
+		F9F1BC2C28C6799D00E246F1 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC2B28C6799D00E246F1 /* WeatherManager.swift */; };
+		F9F1BC2E28C67C0B00E246F1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC2D28C67C0B00E246F1 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		F9F1BC2028C66E7900E246F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9F1BC2228C66E7900E246F1 /* WeatherKitApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherKitApp.entitlements; sourceTree = "<group>"; };
 		F9F1BC2428C66E7900E246F1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F9F1BC2B28C6799D00E246F1 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
+		F9F1BC2D28C67C0B00E246F1 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */,
 				F9F1BC1E28C66E7800E246F1 /* ContentView.swift */,
+				F9F1BC2B28C6799D00E246F1 /* WeatherManager.swift */,
+				F9F1BC2D28C67C0B00E246F1 /* LocationManager.swift */,
 				F9F1BC2028C66E7900E246F1 /* Assets.xcassets */,
 				F9F1BC2228C66E7900E246F1 /* WeatherKitApp.entitlements */,
 				F9F1BC2328C66E7900E246F1 /* Preview Content */,
@@ -139,6 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F1BC2E28C67C0B00E246F1 /* LocationManager.swift in Sources */,
+				F9F1BC2C28C6799D00E246F1 /* WeatherManager.swift in Sources */,
 				F9F1BC1F28C66E7800E246F1 /* ContentView.swift in Sources */,
 				F9F1BC1D28C66E7800E246F1 /* WeatherKitAppApp.swift in Sources */,
 			);
@@ -262,6 +270,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WeatherKitApp/WeatherKitApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherKitApp/Preview Content\"";
@@ -269,6 +278,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Checking the weather";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Checking the weather";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Checking the weather";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -284,6 +296,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.koniecznyjan.WeatherKitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -298,6 +311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = WeatherKitApp/WeatherKitApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherKitApp/Preview Content\"";
@@ -305,6 +319,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Checking the weather";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Checking the weather";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Checking the weather";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -320,6 +337,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.koniecznyjan.WeatherKitApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
