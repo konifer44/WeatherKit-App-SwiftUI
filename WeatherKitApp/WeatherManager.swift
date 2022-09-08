@@ -15,7 +15,7 @@ class WeatherManager: ObservableObject{
     @Published var weather: Weather?
     @Published var locationManager = LocationManager()
     private let weatherService = WeatherService.shared
-    
+     
     private var anyCancellable: AnyCancellable? = nil
     
     init() {
@@ -27,8 +27,8 @@ class WeatherManager: ObservableObject{
     var shortenedHourWeather: [HourWeather] {
         if let weather {
             return Array(weather.hourlyForecast.filter { hourlyWeather in
-                return hourlyWeather.date.timeIntervalSince(Date()) >= 0
-            }.prefix(25))
+                return hourlyWeather.date.timeIntervalSince(Date()) > 0
+            }.prefix(24))
         } else {
             return []
         }

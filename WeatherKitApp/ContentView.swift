@@ -33,7 +33,7 @@ struct ContentView: View {
                     VStack(spacing: 10){
                         Text(viewModel.weatherManager.locationManager.city)
                             .font(.title)
-                        Text(weather.currentWeather.temperature.formatted(.measurement(width: .narrow)).description)
+                        Text(weather.currentWeather.temperature.formatted())
                             .font(.system(size: 80))
                         Text(weather.currentWeather.condition.description)
                         HStack{
@@ -85,14 +85,14 @@ struct ContentView: View {
                         ForEach(weather.dailyForecast, id: \.date){ dailyForecast in
                             HStack{
                                 Text(dailyForecast.date.weekDay())
+                                    .frame(width: 50 , alignment: .leading)
 
-//Calendar.current.component(.weekday, from: dailyForecast.date))")
                                 Spacer()
                                 Image(systemName: dailyForecast.symbolName)
                                 Spacer()
                                 
                                 
-                                Text(dailyForecast.lowTemperature.formatted(.measurement(width: .narrow)).description)
+                                Text(dailyForecast.lowTemperature.formatted())
                                     .foregroundColor(Color(uiColor: .systemGray3))
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .leading, endPoint: .trailing))

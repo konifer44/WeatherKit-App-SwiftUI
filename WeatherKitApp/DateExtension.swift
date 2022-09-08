@@ -10,7 +10,7 @@ extension Date {
     func weekDay() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE"
-        let weekDay = dateFormatter.string(from: Date())
+        let weekDay = dateFormatter.string(from: self )
         return weekDay
     }
 }
