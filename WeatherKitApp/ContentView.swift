@@ -6,140 +6,130 @@
 //
 
 import SwiftUI
-
+import Combine
 class ContentViewViewModel: ObservableObject {
-    @ObservedObject var weatherManager = WeatherManager()
+    @Published var weatherManager = WeatherManager()
     
+    private var anyCancellable: AnyCancellable? = nil
     
-   
+    init(){
+        anyCancellable = weatherManager.objectWillChange
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (_) in
+                self?.objectWillChange.send()
+            }
+    }
+    
 }
 
 struct ContentView: View {
-    @StateObject private var contentViewViewModel = ContentViewViewModel()
+    @StateObject private var viewModel = ContentViewViewModel()
     
     var body: some View {
         ScrollView {
-            
-            Button {
-                Task{
-                    await contentViewViewModel.weatherManager.requestWeather()
-                    print(contentViewViewModel.weatherManager.weather?.currentWeather.temperature as Any)
-                }
-            } label: {
-                Text("Request Weather")
-                    .padding()
-                    .foregroundColor(.white)
-                    .frame(width: 200, height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(30)
-            }
-            
-            Button {
-                print(contentViewViewModel.weatherManager.locationManager.userLocation as Any)
-            } label: {
-                Text("Print Location")
-                    .padding()
-                    .foregroundColor(.white)
-                    .frame(width: 200, height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(30)
-            }
-
-            VStack {
-                Spacer(minLength: 50)
-                VStack{
-                    Text("Poznań")
-                        .font(.title)
-                    Text("19°")
-                        .font(.system(size: 80))
-                    Text("Clear")
-                    HStack{
-                        Text("H: 29°")
-                        Text("L: 10°")
-                    }
-                }
-                .foregroundColor(.white)
-                
-                Spacer(minLength: 50)
-                VStack(alignment: .leading){
-                    Text("Clear conditions will continue for the rest of the day")
-                        .font(.caption)
-                    Divider()
-                        
-                    ScrollView(.horizontal){
+            if let weather = viewModel.weatherManager.weather  {
+                VStack {
+                    Spacer(minLength: 50)
+                    VStack(spacing: 10){
+                        Text(viewModel.weatherManager.locationManager.city)
+                            .font(.title)
+                        Text(weather.currentWeather.temperature.formatted(.measurement(width: .narrow)).description)
+                            .font(.system(size: 80))
+                        Text(weather.currentWeather.condition.description)
                         HStack{
-                            ForEach(0..<10){ _ in
-                                VStack(spacing: 15){
-                                    Text("21")
-                                    Image(systemName: "moon.stars.fill")
-                                    Text("17°")
-                                }
-                                .padding(.horizontal, 15)
-                            }
-                            
+                            Text("H: \(weather.dailyForecast.first?.highTemperature.formatted(.measurement(width: .narrow)).description ?? "")")
+                            Text("L: \(weather.dailyForecast.first?.lowTemperature.formatted(.measurement(width: .narrow)).description ?? "")")
                         }
                     }
-                }
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.gray.opacity(0.4))
-                .cornerRadius(10)
-                .padding()
-            
-                VStack(){
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text("10- DAY FORECAST")
-                        Spacer()
-                    }
-                    .font(.caption)
-                    Divider()
-        
+                    .redacted(reason: viewModel.weatherManager.weather == nil ? .placeholder : [])
+                    .foregroundColor(.white)
                     
-                    
-                    ForEach(0..<10){ _ in
-                        
-                        HStack{
-                            Text("Day")
-                            Spacer()
-                            Image(systemName: "cloud")
-                            Spacer()
-                            
-                            
-                            Text("10°")
-                                .foregroundColor(Color(uiColor: .systemGray3))
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .leading, endPoint: .trailing))
-                                .frame(width: 80, height: 10)
-                            Text("21°")
-                        }
-                        .padding(.top, 5)
+                    Spacer(minLength: 50)
+                    VStack(alignment: .leading){
+                        Text(weather.dailyForecast.first?.condition.description ?? "")
+                            .font(.caption)
                         Divider()
+                        
+                        ScrollView(.horizontal){
+                            HStack{
+                                
+                                ForEach(viewModel.weatherManager.shortenedHourWeather, id: \.date){ hourForecast in
+                                    VStack(spacing: 15){
+                                        Text("\(Calendar.current.component(.hour, from: hourForecast.date))")
+                                        Image(systemName: "\(hourForecast.symbolName)")
+                                        Text(hourForecast.temperature.formatted(.measurement(width: .narrow)).description)
+                                    }
+                                    .padding(.horizontal, 15)
+                                }
+                                
+                            }
+                        }
                     }
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .padding()
+                    
+                    VStack(){
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text("10- DAY FORECAST")
+                            Spacer()
+                        }
+                        .font(.caption)
+                        Divider()
+                        
+                        
+                        
+                        ForEach(weather.dailyForecast, id: \.date){ dailyForecast in
+                            HStack{
+                                Text(dailyForecast.date.weekDay())
+
+//Calendar.current.component(.weekday, from: dailyForecast.date))")
+                                Spacer()
+                                Image(systemName: dailyForecast.symbolName)
+                                Spacer()
+                                
+                                
+                                Text(dailyForecast.lowTemperature.formatted(.measurement(width: .narrow)).description)
+                                    .foregroundColor(Color(uiColor: .systemGray3))
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .leading, endPoint: .trailing))
+                                    .frame(width: 80, height: 10)
+                                Text(dailyForecast.highTemperature.formatted(.measurement(width: .narrow)).description)
+                            }
+                            .padding(.top, 5)
+                            Divider()
+                        }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.gray.opacity(0.4))
+                    .cornerRadius(10)
+                    .padding()
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    Text("Hello, world!")
                 }
                 .frame(maxWidth: .infinity)
-                .padding()
-                .foregroundColor(.white)
-                .background(Color.gray.opacity(0.4))
-                .cornerRadius(10)
-                .padding()
-             
-                
-                
-                
-                
-                
-                
-                Text("Hello, world!")
             }
-            .frame(maxWidth: .infinity)
+            }
+                .background(Color.blue.opacity(0.6))
+                .task {
+                    await viewModel.weatherManager.requestWeatherForCurrentLocation()
+                }
         }
-        .background(Color.blue.opacity(0.6))
     }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
     }
-}

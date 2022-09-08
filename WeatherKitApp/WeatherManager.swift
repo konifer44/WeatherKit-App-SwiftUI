@@ -9,40 +9,38 @@ import Foundation
 import WeatherKit
 import CoreLocation
 import SwiftUI
+import Combine
 
 class WeatherManager: ObservableObject{
+    @Published var weather: Weather?
+    @Published var locationManager = LocationManager()
     private let weatherService = WeatherService.shared
-    let locationManager = LocationManager()
     
+    private var anyCancellable: AnyCancellable? = nil
     
-    func requestWeatherForCurrentLocation() async {
-        print("requestWeatherForCurrentLocation")
-       // locationManager.requestUserLocation()
-        guard let userLocation = locationManager.userLocation else { return }
-        
-        do {
-            let weather = try await weatherService.weather(for: userLocation)
-            let termperature = weather.currentWeather.temperature
-            print("Current temp: \(termperature)")
-        } catch let error {
-            print(error.localizedDescription)
+    init() {
+        anyCancellable = locationManager.objectWillChange.sink { [weak self] (_) in
+            self?.objectWillChange.send()
         }
-        
+    }
+    
+    var shortenedHourWeather: [HourWeather] {
+        if let weather {
+            return Array(weather.hourlyForecast.filter { hourlyWeather in
+                return hourlyWeather.date.timeIntervalSince(Date()) >= 0
+            }.prefix(25))
+        } else {
+            return []
+        }
     }
     
     
-    @State var weather: Weather?
-    
-    func requestWeather() async {
-        let location: CLLocation =
-        CLLocation(
-                latitude: .init(floatLiteral: 37.322998),
-                longitude: .init(floatLiteral: -122.032181)
-            )
+    func requestWeatherForCurrentLocation() async {
+        guard let userLocation = locationManager.userLocation else { return }
         
         do {
-            weather = try await Task.detached(priority: .userInitiated) {
-                return try await self.weatherService.weather(for:location)
+            weather = try await Task.detached(priority: .userInitiated) { [weak self] in
+                return try await self?.weatherService.weather(for: userLocation)
             }.value
         } catch {
             print("\(error.localizedDescription)")
