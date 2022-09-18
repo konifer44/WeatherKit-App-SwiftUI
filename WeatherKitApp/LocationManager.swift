@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 import SwiftUI
-
+import Combine
 
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject{
     @Published var city: String = ""
@@ -17,8 +17,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject{
     private var isLocationManagerAuthorised: Bool = false
     var userLocation: CLLocation?
    
-
-    
     override init() {
         super.init()
         locationManager.delegate = self
@@ -48,11 +46,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject{
                 print("no location yet")
                 return
             }
-            print(city as Any)
             self?.city = city ?? "Unknown City"
-            
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -61,7 +56,6 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject{
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
-            
         case .authorizedAlways:
             isLocationManagerAuthorised = true
         case .authorizedWhenInUse:
@@ -78,3 +72,5 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject{
         }
     }
 }
+
+

@@ -10,11 +10,13 @@ import WeatherKit
 import CoreLocation
 import SwiftUI
 import Combine
+import Network
 
 class WeatherManager: ObservableObject{
     @Published var weather: Weather?
     @Published var locationManager = LocationManager()
     private let weatherService = WeatherService.shared
+    private let monitor = NWPathMonitor()
      
     private var anyCancellable: AnyCancellable? = nil
     
@@ -36,14 +38,30 @@ class WeatherManager: ObservableObject{
     
     
     func requestWeatherForCurrentLocation() async {
-        guard let userLocation = locationManager.userLocation else { return }
+        monitor.pathUpdateHandler = { path in
+            let status = path.status
+    
+            if path.status == .satisfied {
+                print("We're connected!")
+               
+            } else {
+                print("No connection.")
+               
+            }
+            print(path.isExpensive)
+        }
+
+        let queue = DispatchQueue(label: "NetworkMonitor")
+        monitor.start(queue: queue)
         
+        guard let userLocation = locationManager.userLocation else { return }
         do {
             weather = try await Task.detached(priority: .userInitiated) { [weak self] in
                 return try await self?.weatherService.weather(for: userLocation)
             }.value
         } catch {
-            print("\(error.localizedDescription)")
+            print("ERROR ERROR         \n               \(error.localizedDescription)")
+            weather = nil
         }
     }
 }

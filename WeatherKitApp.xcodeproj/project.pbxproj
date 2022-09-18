@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F925B87C28C9E46F0095D715 /* DoubleExtansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = F925B87B28C9E46F0095D715 /* DoubleExtansion.swift */; };
 		F925B87E28C9FDF00095D715 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F925B87D28C9FDF00095D715 /* DateExtension.swift */; };
+		F925B88028D37D370095D715 /* TemperatureBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F925B87F28D37D370095D715 /* TemperatureBarView.swift */; };
+		F925B88228D746C00095D715 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F925B88128D746C00095D715 /* NetworkMonitor.swift */; };
 		F9F1BC1D28C66E7800E246F1 /* WeatherKitAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */; };
 		F9F1BC1F28C66E7800E246F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC1E28C66E7800E246F1 /* ContentView.swift */; };
 		F9F1BC2128C66E7900E246F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9F1BC2028C66E7900E246F1 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		F925B87B28C9E46F0095D715 /* DoubleExtansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtansion.swift; sourceTree = "<group>"; };
 		F925B87D28C9FDF00095D715 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		F925B87F28D37D370095D715 /* TemperatureBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureBarView.swift; sourceTree = "<group>"; };
+		F925B88128D746C00095D715 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		F9F1BC1928C66E7800E246F1 /* WeatherKitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherKitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitAppApp.swift; sourceTree = "<group>"; };
 		F9F1BC1E28C66E7800E246F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,7 +66,9 @@
 			children = (
 				F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */,
 				F9F1BC1E28C66E7800E246F1 /* ContentView.swift */,
+				F925B87F28D37D370095D715 /* TemperatureBarView.swift */,
 				F9F1BC2B28C6799D00E246F1 /* WeatherManager.swift */,
+				F925B88128D746C00095D715 /* NetworkMonitor.swift */,
 				F9F1BC2D28C67C0B00E246F1 /* LocationManager.swift */,
 				F925B87B28C9E46F0095D715 /* DoubleExtansion.swift */,
 				F925B87D28C9FDF00095D715 /* DateExtension.swift */,
@@ -152,6 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9F1BC2E28C67C0B00E246F1 /* LocationManager.swift in Sources */,
+				F925B88228D746C00095D715 /* NetworkMonitor.swift in Sources */,
+				F925B88028D37D370095D715 /* TemperatureBarView.swift in Sources */,
 				F925B87E28C9FDF00095D715 /* DateExtension.swift in Sources */,
 				F9F1BC2C28C6799D00E246F1 /* WeatherManager.swift in Sources */,
 				F925B87C28C9E46F0095D715 /* DoubleExtansion.swift in Sources */,
