@@ -38,29 +38,13 @@ class WeatherManager: ObservableObject{
     
     
     func requestWeatherForCurrentLocation() async {
-        monitor.pathUpdateHandler = { path in
-         //   let status = path.status
-    
-            if path.status == .satisfied {
-                print("We're connected!")
-               
-            } else {
-                print("No connection.")
-               
-            }
-            print(path.isExpensive)
-        }
-
-        let queue = DispatchQueue(label: "NetworkMonitor")
-        monitor.start(queue: queue)
-        
-        guard let userLocation = locationManager.userLocation else { return }
+       guard let userLocation = locationManager.userLocation else { return }
         do {
-            weather = try await Task.detached(priority: .userInitiated) { [weak self] in
-                return try await self?.weatherService.weather(for: userLocation)
+            weather = try await Task.detached(priority: .userInitiated) {
+                return try await self.weatherService.weather(for: userLocation)
             }.value
         } catch {
-            print("ERROR ERROR         \n               \(error.localizedDescription)")
+            print("\(error.localizedDescription)")
             weather = nil
         }
     }
