@@ -36,8 +36,9 @@
 		F925B87D28C9FDF00095D715 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F925B87F28D37D370095D715 /* TemperatureBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureBarView.swift; sourceTree = "<group>"; };
 		F925B88128D746C00095D715 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		F9D022B528DA6CB700A167BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = WeatherKitApp/SupportFiles/README.md; sourceTree = SOURCE_ROOT; };
+		F9D022B528DA6CB700A167BC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = WeatherKitApp/README.md; sourceTree = SOURCE_ROOT; };
 		F9D022B728DA6E9000A167BC /* screenshots.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = screenshots.PNG; path = ../../../../../Downloads/screenshots.PNG; sourceTree = "<group>"; };
+		F9D022B928DA700300A167BC /* screenshots.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshots.PNG; sourceTree = "<group>"; };
 		F9F1BC1928C66E7800E246F1 /* WeatherKitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherKitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitAppApp.swift; sourceTree = "<group>"; };
 		F9F1BC1E28C66E7800E246F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,7 +88,6 @@
 			children = (
 				F925B87B28C9E46F0095D715 /* DoubleExtansion.swift */,
 				F925B87D28C9FDF00095D715 /* DateExtension.swift */,
-				F9D022B528DA6CB700A167BC /* README.md */,
 				F9D022B728DA6E9000A167BC /* screenshots.PNG */,
 			);
 			path = SupportFiles;
@@ -120,6 +120,8 @@
 		F9F1BC1B28C66E7800E246F1 /* WeatherKitApp */ = {
 			isa = PBXGroup;
 			children = (
+				F9D022B528DA6CB700A167BC /* README.md */,
+				F9D022B928DA700300A167BC /* screenshots.PNG */,
 				F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */,
 				F91F3E7E28D9CCE100727FFB /* ViewModels */,
 				F91F3E7928D9CBEB00727FFB /* Views */,
