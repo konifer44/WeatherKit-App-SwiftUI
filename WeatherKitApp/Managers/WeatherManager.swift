@@ -39,7 +39,7 @@ class WeatherManager: ObservableObject{
     
     func requestWeatherForCurrentLocation() async {
         monitor.pathUpdateHandler = { path in
-            let status = path.status
+         //   let status = path.status
     
             if path.status == .satisfied {
                 print("We're connected!")

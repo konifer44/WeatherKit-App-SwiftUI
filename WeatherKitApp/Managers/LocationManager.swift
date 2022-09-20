@@ -42,10 +42,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject{
         locationManager.stopUpdatingLocation() //presevring battery life
         
         getCityforCurrentLocation { [weak self] city, error in
-            guard error == nil else {
-                print("no location yet")
-                return
-            }
+            guard error == nil else { return }
             self?.city = city ?? "Unknown City"
         }
     }
