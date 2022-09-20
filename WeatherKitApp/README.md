@@ -7,7 +7,7 @@
 
  <h3>Screenshots</h3>
   <p align="center">
-  <img src="screenshots.PNG" alt="drawing" width="400"/>
+  <img src="screenshots.PNG" alt="drawing" width="600"/>
 </p>
 
 ## Get Weather from Apple
