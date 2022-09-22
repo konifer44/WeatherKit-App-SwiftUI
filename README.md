@@ -4,7 +4,7 @@
 Access to WeatherKit is included in the Apple Developer Program, which also provides all the tools, resources, and support you need to develop and distribute apps — including access to beta software, app services, testing tools, app analytics, and more.
 
 
- <h3>Requesting location and weather</h3>
+ <h3>Requesting Location And Weather</h3>
   <p align="center">
   <img src="requestingWeather.PNG" alt="drawing" width="600"/>
 </p>
