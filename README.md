@@ -5,19 +5,27 @@
 >Access to WeatherKit is included in the Apple Developer Program, which also provides all the tools, resources, and support you need to develop and distribute apps — including access to beta software, app services, testing tools, app analytics, and more.
 
 
- <h3>Screenshots</h3>
+ <h3>Requesting location and weather</h3>
   <p align="center">
-  <img src="screenshots.PNG" alt="drawing" width="600"/>
+  <img src="requestingWeather.PNG" alt="drawing" width="600"/>
+</p>
+
+ <h3>Homescreen Widget- still in development</h3>
+  <p align="center">
+  <img src="homeScreenWidget.PNG" alt="drawing" width="600"/>
+</p>
+
+ <h3>Lock Screen Widget- still in development</h3>
+  <p align="center">
+  <img src="lockScreenWidget.PNG" alt="drawing" width="600"/>
 </p>
 
 ## Get Weather from Apple
-```swift
-    func requestWeatherForCurrentLocation() async {
+>Using new Swift API 
+```func requestWeatherForCurrentLocation() async {
        guard let userLocation = locationManager.userLocation else { return }
         do {
-            weather = try await Task.detached(priority: .userInitiated) {
-                return try await self.weatherService.weather(for: userLocation)
-            }.value
+            weather = try await WeatherService.shared.weather(for: userLocation)
         } catch {
             print("\(error.localizedDescription)")
             weather = nil

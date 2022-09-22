@@ -31,7 +31,7 @@ struct Provider: IntentTimelineProvider {
         }
     }
     
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         let weatherManager = WeatherManager()
         let city = weatherManager.locationManager.city
         let nextUpdateDate = Calendar.current.date(byAdding: .minute, value: 1, to: Date())!
@@ -60,38 +60,22 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct WeatherKitAppWidgetEntryView : View {
+    @Environment(\.widgetFamily) private var family
+    
     let gradient = LinearGradient(colors: [.blue, .blue.opacity(0.5)], startPoint: .top, endPoint: .bottom)
     var entry: Provider.Entry
     
+    
     var body: some View {
-        VStack(alignment: .leading){
-            HStack(spacing: 3) {
-                Text(entry.city ?? "Poznań")
-                Image(systemName: "location.fill")
-                    .font(.system(size: 8))
-                Text(entry.date, style: .timer)
-            }
-            Text(entry.weather?.currentWeather.temperature.description ?? "14°")
-                .font(.largeTitle)
-            Spacer()
-            
-            VStack(alignment: .leading, spacing: 2){
-                Image(systemName: entry.weather?.currentWeather.symbolName ?? "cloud.fill")
-                Text(entry.weather?.currentWeather.condition.description ?? "Cloudy")
-                HStack{
-                    Text("L: \(entry.weather?.dailyForecast.first?.lowTemperature.description ?? "5")°")
-                    Text("H: \(entry.weather?.dailyForecast.first?.highTemperature.description ?? "16")°")
-                }
-            }
-            .font(.caption)
-        }
-        .foregroundColor(.white)
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            Image("clouds")
-                .offset(x: 200, y: -120))
+        switch family {
+        case .systemSmall:
+           SystemSmallWidgetView(entry: entry)
         
+        case .accessoryCircular:
+            LockScreenWidget()
+        default:
+            EmptyView()
+        }
     }
 }
 
@@ -103,7 +87,7 @@ struct WeatherKitAppWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WeatherKitAppWidgetEntryView(entry: entry)
         }
-        .supportedFamilies([.systemSmall])
+        .supportedFamilies([.systemSmall, .accessoryCircular])
         .configurationDisplayName("Weather")
         .description("Get the latest forecast")
     }
@@ -111,7 +95,12 @@ struct WeatherKitAppWidget: Widget {
 
 struct WeatherKitAppWidget_Previews: PreviewProvider {
     static var previews: some View {
-        WeatherKitAppWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(),  weather: nil, city: nil))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        Group {
+            WeatherKitAppWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(),  weather: nil, city: nil))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+            
+            WeatherKitAppWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent(),  weather: nil, city: nil))
+                .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+        }
     }
 }

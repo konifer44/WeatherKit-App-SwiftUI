@@ -16,7 +16,6 @@ import WidgetKit
 public class WeatherManager: ObservableObject{
     @Published var weather: Weather?
     @Published var locationManager = LocationManager()
-    private let weatherService = WeatherService.shared
     private let monitor = NWPathMonitor()
      
     private var anyCancellable: AnyCancellable? = nil
@@ -41,9 +40,7 @@ public class WeatherManager: ObservableObject{
     func requestWeatherForCurrentLocation() async {
        guard let userLocation = locationManager.userLocation else { return }
         do {
-            weather = try await Task.detached(priority: .userInitiated) {
-                return try await self.weatherService.weather(for: userLocation)
-            }.value
+            weather = try await WeatherService.shared.weather(for: userLocation)
         } catch {
             print("\(error.localizedDescription)")
             weather = nil
@@ -54,7 +51,7 @@ public class WeatherManager: ObservableObject{
         print("REQUEST")
         guard let userLocation = locationManager.userLocation else { return nil }
         do {
-            return try await self.weatherService.weather(for: userLocation)
+            return try await WeatherService.shared.weather(for: userLocation)
         } catch {
             print("Eroredor: \(error.localizedDescription)")
         }

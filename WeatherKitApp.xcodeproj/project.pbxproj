@@ -27,6 +27,9 @@
 		F94CE19628DC49A100FC01DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC2D28C67C0B00E246F1 /* LocationManager.swift */; };
 		F94CE19728DC49A100FC01DC /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F925B88128D746C00095D715 /* NetworkMonitor.swift */; };
 		F94CE19828DC586000FC01DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9F1BC2028C66E7900E246F1 /* Assets.xcassets */; };
+		F94CE19E28DC698300FC01DC /* TemperatureBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F925B87F28D37D370095D715 /* TemperatureBarView.swift */; };
+		F94CE1A328DC6A9100FC01DC /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94CE1A228DC6A9100FC01DC /* LockScreenWidget.swift */; };
+		F94CE1A528DC702A00FC01DC /* SystemSmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94CE1A428DC702A00FC01DC /* SystemSmallWidgetView.swift */; };
 		F9D022B828DA6E9000A167BC /* screenshots.PNG in Resources */ = {isa = PBXBuildFile; fileRef = F9D022B728DA6E9000A167BC /* screenshots.PNG */; };
 		F9F1BC1D28C66E7800E246F1 /* WeatherKitAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */; };
 		F9F1BC1F28C66E7800E246F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1BC1E28C66E7800E246F1 /* ContentView.swift */; };
@@ -76,6 +79,8 @@
 		F94CE18928DC492F00FC01DC /* WeatherAppWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WeatherAppWidget.intentdefinition; sourceTree = "<group>"; };
 		F94CE18A28DC493000FC01DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F94CE18C28DC493000FC01DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F94CE1A228DC6A9100FC01DC /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
+		F94CE1A428DC702A00FC01DC /* SystemSmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSmallWidgetView.swift; sourceTree = "<group>"; };
 		F9D022B728DA6E9000A167BC /* screenshots.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = screenshots.PNG; path = ../../../../../Downloads/screenshots.PNG; sourceTree = "<group>"; };
 		F9F1BC1928C66E7800E246F1 /* WeatherKitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherKitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9F1BC1C28C66E7800E246F1 /* WeatherKitAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitAppApp.swift; sourceTree = "<group>"; };
@@ -153,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				F94CE18728DC492F00FC01DC /* WeatherAppWidget.swift */,
+				F94CE1A428DC702A00FC01DC /* SystemSmallWidgetView.swift */,
+				F94CE1A228DC6A9100FC01DC /* LockScreenWidget.swift */,
 				F94CE18928DC492F00FC01DC /* WeatherAppWidget.intentdefinition */,
 				F94CE18A28DC493000FC01DC /* Assets.xcassets */,
 				F94CE18C28DC493000FC01DC /* Info.plist */,
@@ -317,6 +324,9 @@
 				F94CE19628DC49A100FC01DC /* LocationManager.swift in Sources */,
 				F94CE19528DC49A100FC01DC /* WeatherManager.swift in Sources */,
 				F94CE19728DC49A100FC01DC /* NetworkMonitor.swift in Sources */,
+				F94CE1A528DC702A00FC01DC /* SystemSmallWidgetView.swift in Sources */,
+				F94CE1A328DC6A9100FC01DC /* LockScreenWidget.swift in Sources */,
+				F94CE19E28DC698300FC01DC /* TemperatureBarView.swift in Sources */,
 				F94CE18828DC492F00FC01DC /* WeatherAppWidget.swift in Sources */,
 				F94CE18D28DC493000FC01DC /* WeatherAppWidget.intentdefinition in Sources */,
 			);
