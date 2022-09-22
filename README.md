@@ -9,17 +9,6 @@ Access to WeatherKit is included in the Apple Developer Program, which also prov
   <img src="requestingWeather.PNG" alt="drawing" width="600"/>
 </p>
 
- <h3>Homescreen Widget</h3>
-  <p align="center">
-  <img src="homeScreenWidget.PNG" alt="drawing" width="600"/>
-</p>
-
- <h3>Lock Screen Widget- New in iOS 16</h3>
-  <p align="center">
-  <img src="lockScreenWidget.PNG" alt="drawing" width="600"/>
-</p>
-
-## Get Weather from Apple
 >Using async/await
 ```func requestWeatherForCurrentLocation() async {
        guard let userLocation = locationManager.userLocation else { return }
@@ -31,6 +20,16 @@ Access to WeatherKit is included in the Apple Developer Program, which also prov
         }
     }
 ```
+
+ <h3>Homescreen Widget</h3>
+  <p align="center">
+  <img src="homeScreenWidget.PNG" alt="drawing" width="600"/>
+</p>
+
+ <h3>Lock Screen Widget- New in iOS 16</h3>
+  <p align="center">
+  <img src="lockScreenWidget.PNG" alt="drawing" width="600"/>
+</p>
 
 
 ## Tech
