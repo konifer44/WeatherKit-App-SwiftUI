@@ -1,7 +1,6 @@
 # SwiftUI-Weather-App
 
->WeatherKit brings valuable weather information to your apps and services through a wide range of data that can help people stay up to date, safe, and prepared. It’s easy to use WeatherKit in your apps for iOS 16, iPadOS 16, macOS 13, tvOS 16, and watchOS 9 with a platform-specific Swift API.
-
+>WeatherKit brings valuable weather information to your apps and services through a wide range of data that can help people stay up to date, safe, and prepared. It’s easy to use WeatherKit in your apps for iOS 16, iPadOS 16, macOS 13, tvOS 16, and watchOS 9 with a platform-specific Swift API.\
 Access to WeatherKit is included in the Apple Developer Program, which also provides all the tools, resources, and support you need to develop and distribute apps — including access to beta software, app services, testing tools, app analytics, and more.
 
 
@@ -21,7 +20,7 @@ Access to WeatherKit is included in the Apple Developer Program, which also prov
 </p>
 
 ## Get Weather from Apple
->Using new Swift API 
+>Using async/await
 ```func requestWeatherForCurrentLocation() async {
        guard let userLocation = locationManager.userLocation else { return }
         do {
