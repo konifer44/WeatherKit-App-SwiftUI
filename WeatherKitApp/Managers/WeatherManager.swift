@@ -11,8 +11,9 @@ import CoreLocation
 import SwiftUI
 import Combine
 import Network
+import WidgetKit
 
-class WeatherManager: ObservableObject{
+public class WeatherManager: ObservableObject{
     @Published var weather: Weather?
     @Published var locationManager = LocationManager()
     private let weatherService = WeatherService.shared
@@ -47,5 +48,16 @@ class WeatherManager: ObservableObject{
             print("\(error.localizedDescription)")
             weather = nil
         }
+    }
+    
+    func requestWeatherForCurrentLocation2() async -> Weather? {
+        print("REQUEST")
+        guard let userLocation = locationManager.userLocation else { return nil }
+        do {
+            return try await self.weatherService.weather(for: userLocation)
+        } catch {
+            print("Eroredor: \(error.localizedDescription)")
+        }
+        return nil
     }
 }

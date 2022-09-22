@@ -29,7 +29,16 @@ struct ContentView: View {
                     }
                 }
             } else {
-                NoInternetConnectionView()
+               // NoInternetConnectionView()
+                VStack{
+                    Spacer()
+                    Text("Requesting weather")
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .frame(width: 40)
+                    Spacer()
+                }
+                .edgesIgnoringSafeArea(.all)
             }
         }
         .frame(maxWidth: .infinity)
